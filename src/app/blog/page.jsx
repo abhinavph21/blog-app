@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ContactPage = () => {
+const BlogPage = () => {
   return (
-    <div>ContactPage</div>
+    <div>BlogPage</div>
   )
 }
 
-export default ContactPage
+export default BlogPage

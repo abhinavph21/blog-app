@@ -1,9 +1,9 @@
 import React from 'react'
 
-const RegisterPage = () => {
+const LoginPage = () => {
   return (
-    <div>RegisterPage</div>
+    <div>LoginPage</div>
   )
 }
 
-export default RegisterPage
+export default LoginPage
