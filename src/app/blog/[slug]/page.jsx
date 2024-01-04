@@ -2,9 +2,17 @@ import React from 'react'
 import Image from 'next/image';
 import styles from './singlePost.module.css'
 
-const SinglePostPage = ({ params, searchParams }) => {
+const getData = async (slug) => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`)
+  if (!res.ok)
+    throw new Error("something went wrong")
+  return res.json()
+}
 
-  console.log(params, searchParams);
+const SinglePostPage = async ({ params }) => {
+  const { slug } = params
+  // console.log(params, searchParams);
+  const post = await getData(slug)
 
   return (
     <div className={styles.container}>
@@ -14,7 +22,7 @@ const SinglePostPage = ({ params, searchParams }) => {
         <Image src="https://images.pexels.com/photos/6001658/pexels-photo-6001658.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" fill className={styles.img} />
       </div>
       <div className={styles.textContainer}>
-        <h1 className={styles.title}>title</h1>
+        <h1 className={styles.title}>{post.title}</h1>
         <div className={styles.detail}>
           <div className={styles.authorContainer}>
             <Image
