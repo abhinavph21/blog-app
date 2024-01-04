@@ -2,7 +2,10 @@ import React from 'react'
 import Image from 'next/image';
 import styles from './singlePost.module.css'
 
-const SinglePostPage = () => {
+const SinglePostPage = ({ params, searchParams }) => {
+
+  console.log(params, searchParams);
+
   return (
     <div className={styles.container}>
       {/* {post.img && (
