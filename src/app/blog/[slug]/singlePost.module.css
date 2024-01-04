@@ -54,28 +54,3 @@
     }
   }
   
-  .authorContainer{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .authorAvatar{
-    object-fit: cover;
-    border-radius: 50%;
-  }
-  
-  .authorTexts{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .authorTitle{
-    color: gray;
-    font-weight: bold;
-  }
-  
-  .authorUsername{
-    font-weight: 500;
-  }
