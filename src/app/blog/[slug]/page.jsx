@@ -3,6 +3,18 @@ import Image from 'next/image';
 import styles from './singlePost.module.css'
 import PostUser from '@/components/postUser/postUser';
 import { getPost } from '@/lib/data';
+
+export const generateMetadata = async ({ params }) => {
+  const { slug } = params;
+
+  const post = await getPost(slug);
+
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+};
+
 const getData = async (slug) => {
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`)
   if (!res.ok)
@@ -14,7 +26,6 @@ const SinglePostPage = async ({ params }) => {
   const { slug } = params
   // console.log(params, searchParams);
   const post = await getPost(slug)
-  console.log(post);
 
   return (
     <div className={styles.container}>
