@@ -12,10 +12,10 @@ const getData = async () => {
 
 const BlogPage = async () => {
   // api
-  const posts = await getData()
+  // const posts = await getData()
 
   // without api
-  // const posts = await getPosts()
+  const posts = await getPosts()
 
   return (
     <div className={styles.container}>

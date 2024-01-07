@@ -14,7 +14,7 @@ const NavigationTest = () => {
         router.push("/")
     }
 
-    console.log(pathname, q);
+    // console.log(pathname, q);
 
     return (
         <div>

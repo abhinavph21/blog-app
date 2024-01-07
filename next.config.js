@@ -7,6 +7,9 @@ const nextConfig = {
                 hostname: "images.pexels.com"
             }
         ]
+    },
+    env: {
+        MONGO_URI: "mongodb+srv://apabhinav16:abhinavph21@cluster0.tv6z7pd.mongodb.net/blog"
     }
 }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 import styles from './postUser.module.css'
+import { getPost, getUser } from '@/lib/data';
 
 const getData = async (userId) => {
     const res = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`, { cache: "no-store" });
@@ -14,7 +15,11 @@ const getData = async (userId) => {
 
 const PostUser = async ({ userId }) => {
 
-    const user = await getData(userId);
+    // const user = await getData(userId);
+
+    const user = await getUser(userId);
+
+    console.log(user);
 
     return (
         <div className={styles.container}>
