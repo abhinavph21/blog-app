@@ -3,37 +3,32 @@ import Image from 'next/image';
 import styles from './singlePost.module.css'
 import PostUser from '@/components/postUser/postUser';
 // import { getPost } from '@/lib/data';
+import axios from 'axios';
 
 //  api
 const getData = async (slug) => {
   console.log(`http://localhost:3000/api/blog/${slug}`);
   try {
-    const res = await fetch(`http://localhost:3000/api/blog/1`);
-    const data = await res.json()
-    console.log(data);
-    return data;
+    const res = await axios.get(`http://localhost:3000/api/blog/${slug}`)
+    return res.data
   } catch (err) {
     console.log();
     throw new Error(err)
   }
-  // if (!res.ok) {
-  //   throw new Error("Something went wrong");
-  // }
-
 };
 
-// export const generateMetadata = async ({ params }) => {
-//   const { slug } = params;
+export const generateMetadata = async ({ params }) => {
+  const { slug } = params;
 
-//   const post = await getPost(slug);
+  const post = await getPost(slug);
 
-//   return {
-//     title: post.title,
-//     description: post.desc,
-//   };
-// };
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+};
 
-// not working api
+// api working with axios, but not with fetch 
 const SinglePostPage = async ({ params }) => {
   // slug = id
   const { slug } = params
@@ -41,6 +36,7 @@ const SinglePostPage = async ({ params }) => {
   // const post = await getPost(slug)
 
   const post = await getData(slug)
+  console.log(post);
 
   return (
     <div className={styles.container}>
