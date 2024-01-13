@@ -17,16 +17,16 @@ const getData = async (slug) => {
   }
 };
 
-export const generateMetadata = async ({ params }) => {
-  const { slug } = params;
+// export const generateMetadata = async ({ params }) => {
+//   const { slug } = params;
 
-  const post = await getPost(slug);
+//   const post = await getPost(slug);
 
-  return {
-    title: post.title,
-    description: post.desc,
-  };
-};
+//   return {
+//     title: post.title,
+//     description: post.desc,
+//   };
+// };
 
 // api working with axios, but not with fetch 
 const SinglePostPage = async ({ params }) => {
