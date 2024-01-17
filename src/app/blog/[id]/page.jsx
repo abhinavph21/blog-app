@@ -6,10 +6,10 @@ import PostUser from '@/components/postUser/postUser';
 import axios from 'axios';
 
 //  api
-const getData = async (slug) => {
-  console.log(`http://localhost:3000/api/blog/${slug}`);
+const getData = async (id) => {
+  console.log(`http://localhost:3000/api/blog/${id}`);
   try {
-    const res = await axios.get(`http://localhost:3000/api/blog/${slug}`)
+    const res = await axios.get(`http://localhost:3000/api/blog/${id}`)
     return res.data
   } catch (err) {
     console.log();
@@ -31,12 +31,12 @@ const getData = async (slug) => {
 // api working with axios, but not with fetch 
 const SinglePostPage = async ({ params }) => {
   // slug = id
-  const { slug } = params
+  const { id } = params
   // console.log(params, searchParams);
   // const post = await getPost(slug)
 
-  const post = await getData(slug)
-  console.log(post);
+  const post = await getData(id)
+  console.log("post", post);
 
   return (
     <div className={styles.container}>

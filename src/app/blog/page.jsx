@@ -4,7 +4,7 @@ import PostCard from '@/components/postCard/postCard'
 // import { getPosts } from '@/lib/data'
 
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/blog", { next: { revalidate: 3600 } })
+  const res = await fetch("http://localhost:3000/api/blog", { next: { revalidate: 0 } })
   if (!res.ok)
     throw new Error("something went wrong")
   return res.json()
@@ -13,7 +13,6 @@ const getData = async () => {
 const BlogPage = async () => {
   // api
   const posts = await getData()
-
   // without api
   // const posts = await getPosts()
 

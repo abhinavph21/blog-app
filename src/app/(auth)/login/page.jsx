@@ -1,4 +1,5 @@
 // import LoginForm from "@/components/loginForm/loginForm";
+import Link from "next/link";
 import { handleGithubLogin, login } from "@/lib/action";
 import styles from "./login.module.css";
 
@@ -12,7 +13,11 @@ const LoginPage = async () => {
           <input type="password" placeholder="password" name="password"></input>
           <button >Login with credentials</button>
         </form>
-        {/* <LoginForm /> */}
+        <div>
+          <Link href="/register">
+            {"Don't have an account?"} <b>Register</b>
+          </Link>
+        </div>
       </div>
     </div>
   );

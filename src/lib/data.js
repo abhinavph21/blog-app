@@ -55,7 +55,8 @@ export const getUser = async (id) => {
     noStore();
     try {
         connectToDb();
-        const user = await User.findOne({ "id": id });
+        const user = await User.findOne({ "_id": id });
+        console.log("user", user);
         return user;
     } catch (err) {
         console.log(err);
