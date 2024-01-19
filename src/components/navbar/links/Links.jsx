@@ -30,7 +30,6 @@ const Links = ({ session }) => {
 
     const [open, setOpen] = useState(false);
 
-    console.log(session?.user);
 
     return (
         <div className={styles.container}>
