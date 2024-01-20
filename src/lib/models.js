@@ -25,6 +25,9 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
+        createdAt: {
+            type: String
+        }
     },
     { timestamps: true }
 );
@@ -43,13 +46,9 @@ const postSchema = new mongoose.Schema(
             type: String,
         },
         userId: {
-            type: String,
+            type: mongoose.Schema.ObjectId,
+            ref: "User",
             required: true,
-        },
-        slug: {
-            type: String,
-            required: true,
-            unique: true,
         },
     },
     { timestamps: true }

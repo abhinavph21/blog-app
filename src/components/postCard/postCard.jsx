@@ -13,7 +13,7 @@ const PostCard = ({ post }) => {
             </div>
             <div className={styles.bottom}>
                 {post.title && <h1 className={styles.title}>{post.title.length > 50 ? `${post.title.substring(0, 50)} ...` : post.title}</h1>}
-                {post.body && <p className={styles.desc}>{post.body.length > 80 ? `${post.body.substring(0, 80)} ...` : post.body}</p>}
+                {post.desc && <p className={styles.desc}>{post.desc.length > 80 ? `${post.desc.substring(0, 80)} ...` : post.desc}</p>}
                 <Link className={styles.link} href={`/blog/${post._id}`}>READ MORE</Link>
             </div>
         </div>

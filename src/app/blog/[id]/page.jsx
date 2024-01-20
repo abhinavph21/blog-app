@@ -7,12 +7,13 @@ import axios from 'axios';
 
 //  api
 const getData = async (id) => {
-  console.log(`http://localhost:3000/api/blog/${id}`);
+  // console.log(`http://localhost:3000/api/blog/${id}`);
   try {
-    const res = await axios.get(`http://localhost:3000/api/blog/${id}`)
-    return res.data
+    const res = await fetch(`http://localhost:3000/api/blog/${id}`, { next: { revalidate: 5 } })
+    // console.log("res", res.json());
+    const data = await res.json()
+    return data
   } catch (err) {
-    console.log();
     throw new Error(err)
   }
 };

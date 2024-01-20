@@ -4,11 +4,11 @@ import { NextResponse } from "next/server";
 
 export const GET = async (request, { params }) => {
     const { id } = params;
-
+    console.log(id, typeof id);
     try {
         await connectToDb();
-        console.log("get single post", id);
-        const post = await Post.findOne({ _id: id });
+        const post = await Post.findById(id);
+        console.log("fetched single post", post);
         return NextResponse.json(post);
     } catch (err) {
         console.log(err);
