@@ -5,24 +5,27 @@ import { connectToDb } from "./utils";
 import { Post, User } from "./models";
 import { revalidatePath } from "next/cache";
 import { signIn, signOut } from "./auth";
+import { ObjectId } from "mongodb";
 
-export const addPost = async (formData) => {
-    const { title, desc, slug, userId } = Object.fromEntries(formData);
+//  useform state in component
+export const addPost = async (prevState, formData) => {
+    console.log(formData);
+    const { title, desc, userId, img } = Object.fromEntries(formData);
 
     try {
         connectToDb();
         const newPost = new Post({
             title,
             desc,
-            slug,
-            userId,
+            userId: new ObjectId(userId),
+            img
         });
 
         await newPost.save();
-        console.log("saved to db");
+        console.log("saved post to db");
         //  will not use cache, and fetch again
         revalidatePath("/blog");
-        //   revalidatePath("/admin");
+        revalidatePath("/admin");
     } catch (err) {
         console.log(err);
         return { error: "Something went wrong!" };
@@ -45,6 +48,46 @@ export const deletePost = async (formData) => {
     }
 };
 
+//  useform state in component
+export const addUser = async (prevState, formData) => {
+    const { username, email, password, img, isAdmin } = Object.fromEntries(formData);
+
+    try {
+        connectToDb();
+        const newUser = new User({
+            username,
+            email,
+            password,
+            img,
+            isAdmin
+        });
+
+        await newUser.save();
+        console.log("saved user to db");
+        revalidatePath("/admin");
+    } catch (err) {
+        console.log(err);
+        return { error: "Something went wrong!" };
+    }
+};
+
+export const deleteUser = async (formData) => {
+    const { id } = Object.fromEntries(formData);
+
+    try {
+        connectToDb();
+
+        await Post.deleteMany({ userId: id });
+        await User.findByIdAndDelete(id);
+        console.log("deleted user from db");
+        revalidatePath("/admin");
+    } catch (err) {
+        console.log(err);
+        return { error: "Something went wrong!" };
+    }
+};
+
+
 export const handleGithubLogin = async () => {
     await signIn("github");
 };
@@ -53,8 +96,7 @@ export const handleLogout = async () => {
     await signOut()
 }
 
-export const register = async (formData) => {
-    console.log(formData);
+export const register = async (prevState, formData) => {
     const { username, email, password, img, passwordRepeat } = Object.fromEntries(formData)
     if (password !== passwordRepeat) {
         return { error: "Passwords do not match" };
@@ -76,6 +118,7 @@ export const register = async (formData) => {
             email,
             password: hashedPassword,
             img,
+            isAdmin: true
         });
         await newUser.save();
         console.log("saved to db");

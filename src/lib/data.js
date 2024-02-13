@@ -30,7 +30,7 @@ import { unstable_noStore as noStore } from 'next/cache'
 export const getPosts = async () => {
     try {
         connectToDb();
-        const posts = await Post.find();
+        const posts = await Post.find().sort({ createdAt: -1 });
         return posts;
     } catch (err) {
         console.log(err);

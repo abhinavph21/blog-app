@@ -3,25 +3,39 @@ import GitHub from "next-auth/providers/github"
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcryptjs'
 import { connectToDb } from "./utils";
-import { User } from "./models";
+import { Post, User } from "./models";
 import { authConfig } from "./auth.config";
+
 
 const login = async (credentials) => {
     try {
-        connectToDb();
-        const user = await User.findOne({ username: credentials.username });
+        console.log(process.env.MONGO_URI);
+        await connectToDb();
+        console.log(credentials);
 
-        if (!user) throw new Error("Wrong credentials!");
+        const { username } = credentials
+        console.log(username);
+
+        const user = await User.findOne({ username });
+
+        if (!user) {
+            console.log("user not found");
+            throw new Error("Wrong credentials!");
+        }
 
         const isPasswordCorrect = await bcrypt.compare(
             credentials.password,
             user.password
         );
 
-        if (!isPasswordCorrect) throw new Error("Wrong credentials!");
-
+        if (!isPasswordCorrect) {
+            console.log("wrong password");
+            throw new Error("Wrong credentials!");
+        }
+        console.log("user in db", user);
         return user;
     } catch (err) {
+        console.log(err);
         throw new Error("Failed to login!");
     }
 };
