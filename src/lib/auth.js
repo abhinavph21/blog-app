@@ -20,7 +20,6 @@ const login = async (credentials) => {
 
         if (!user) {
             console.log("user not found");
-            throw new Error("Wrong credentials!");
         }
 
         const isPasswordCorrect = await bcrypt.compare(

@@ -9,7 +9,7 @@ export const GET = async (request) => {
     try {
         console.log("fetch all posts");
         await connectToDb();
-        const posts = await Post.find();
+        const posts = await Post.find().sort({ createdAt: -1 });
         return NextResponse.json(posts);
     } catch (err) {
         console.log(err);
