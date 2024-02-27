@@ -2,7 +2,7 @@
 import React from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import styles from './navlink.module.css'
+import styles from './navLink.module.css'
 
 const NavLink = ({ item }) => {
 
