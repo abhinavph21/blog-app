@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import Image from 'next/image';
 import styles from './singlePost.module.css'
-import PostUser from '@/components/postUser/postUser';
+import PostUser from '../../../components/postUser/postUser';
 // import { getPost } from '@/lib/data';
 import axios from 'axios';
 

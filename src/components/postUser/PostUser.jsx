@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 import styles from './postUser.module.css'
-import { getPost, getUser } from '@/lib/data';
+import { getPost, getUser } from '../../lib/data';
 
 const getData = async (userId) => {
     const res = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`, { cache: "no-store" });

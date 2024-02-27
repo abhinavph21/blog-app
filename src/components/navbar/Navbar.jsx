@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Links from "./links/links"
 import styles from './navbar.module.css'
-import { auth } from '@/lib/auth'
+import { auth } from '../../lib/auth'
 // this container will be different from globals
 
 // import './navbar.css'
