@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './blog.module.css'
-import PostCard from '../../components/postCard/postCard'
+import PostCard from '../../components/postCard/PostCard'
 // import { getPosts } from '@/lib/data'
 
 const getData = async () => {

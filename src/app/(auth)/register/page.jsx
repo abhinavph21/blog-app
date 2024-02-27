@@ -1,5 +1,5 @@
 import styles from "./register.module.css";
-import RegisterForm from "@/components/registerForm/registerFrom";
+import RegisterForm from "@/components/registerForm/RegisterFrom";
 
 const RegisterPage = () => {
   return (
